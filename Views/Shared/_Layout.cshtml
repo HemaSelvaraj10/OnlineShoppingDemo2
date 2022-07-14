@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Cloth Shopping</title>
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Css/style.css" rel="stylesheet" />
+
+    <link href="~/Content/mainlayout.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @Html.ActionLink("OnlineShopping", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            @{
+                String Name = (String)Session["UserName"];
+            }
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (Session["UserName"] != null && Name != "admin")
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    }
+
+                    @if (Name == "admin")
+                    {
+                        <li>@Html.ActionLink("Product", "Index", "Products")</li>
+                        <li>@Html.ActionLink("Category", "Index", "Categories")</li>
+                    }
+
+                    @if (Session["UserName"] == null)
+                    {
+                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                    }
+
+                    @if (Session["UserName"] != null)
+                    {
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-2 xs-6">
+                <div class="logo">
+                    <h1><a href="#"> Online <span> Shopping store</span></a></h1>
+                    <p> My shop </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-2 xs-6">
+                <div class="account">
+                    <u1>
+                        <li>
+                            <div class="hidden-xs">
+                                <h4><a>call</a></h4>
+                                <p>018##-######</p>
+                            </div>
+                            <div class="visible-xs">
+
+                                <p>018##-######</p>
+                            </div>
+                        </li>
+                    </u1>
+                    
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-menus">
+                        <ul class="nav nav-pills">
+                            <li class=" =active"><a style="border-radius:initial;" href="#">Home</a></li>
+                            <li ><a style="border-radius:initial;" href="#">Location</a></li>
+                            <li ><a style="border-radius:initial;" href="#">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

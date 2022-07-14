@@ -1,0 +1,90 @@
+﻿@model OnlineShoppingDemo2.Models.Product
+
+@{
+    ViewBag.Title = "ShowDetails";
+    if (Session["UserName"] == null)
+    {
+        Response.Redirect("~/Account/Login", false);
+    }
+}
+
+
+
+
+
+
+
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="~/Images/@Html.DisplayFor(model=>model.ImageUrl)" alt="" width="100%" id="ProductImg">
+
+
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="~/Images/@Html.DisplayFor(model=>model.ImageUrl1)" alt="" width="100%" class="small-img">
+                    </div>
+
+                    <div class="small-img-col">
+                        <img src="~/Images/@Html.DisplayFor(model=>model.ImageUrl2)" alt="" width="100%" class="small-img">
+                    </div>
+
+                    <div class="small-img-col">
+                        <img src="~/Images/@Html.DisplayFor(model=>model.ImageUrl3)" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="~/Images/@Html.DisplayFor(model=>model.ImageUrl3)" alt="" width="100%" class="small-img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <p> @Html.DisplayFor(model => model.Categories.CateName)</p>
+                <h1> @Html.DisplayFor(model => model.Name)</h1>
+                <h4> @Html.DisplayFor(model => model.Price)</h4>
+                <select name="" id="">
+                    <option value="">Select Size</option>
+                    <option value="">XXL</option>
+                    <option value="">XL</option>
+                    <option value="">Large</option>
+                    <option value="">Medium</option>
+                    <option value="">Small</option>
+                </select>
+                <input type="number" value="1" id="">
+                @Html.ActionLink("Add To Cart", "Cart", "ProductUser", new { id = Html.DisplayFor(model => model.Id), area = "" }, new { @class = "btn" })
+
+
+                <h3>Product Details</h3>
+                <br>
+                <p>Give your summer wardrope a style upgrade with the HRX Men's Active T-Shirt. Team it with a pair of shirts for your morning workout or a denims for an evening out with the guys.</p>
+            </div>
+        </div>
+    </div>
+   
+
+
+
+
+    <script>
+
+        var ProductImg = document.getElementById("ProductImg");
+
+        var SmallImg = document.getElementsByClassName("small-img");
+
+
+        SmallImg[0].onclick = function () {
+            ProductImg.src = SmallImg[0].src;
+        }
+
+        SmallImg[1].onclick = function () {
+            ProductImg.src = SmallImg[1].src;
+        }
+
+        SmallImg[2].onclick = function () {
+            ProductImg.src = SmallImg[2].src;
+        }
+
+        SmallImg[3].onclick = function () {
+            ProductImg.src = SmallImg[3].src;
+        }
+
+    </script>
